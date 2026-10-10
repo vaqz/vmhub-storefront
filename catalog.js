@@ -46,16 +46,36 @@ const searchInput = document.getElementById('product-search');
 const categoryInput = document.getElementById('product-filter');
 const countLabel = document.getElementById('product-count');
 const orderItems = new Map();
-const productImages = {
-  cases: "https://images.unsplash.com/photo-1764053430686-5435fe548fca?auto=format&fit=crop&w=800&q=80",
-  protection: "https://images.unsplash.com/photo-1752832902114-825ca9c530d7?auto=format&fit=crop&w=800&q=80",
-  charging: "https://images.unsplash.com/photo-1752832902114-825ca9c530d7?auto=format&fit=crop&w=800&q=80",
-  power: "https://images.unsplash.com/photo-1752832902114-825ca9c530d7?auto=format&fit=crop&w=800&q=80",
-  audio: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=800&q=80",
-  mounts: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=800&q=80",
-  connectivity: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80",
-  care: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80"
-};
+function productIllustration(p) {
+  const n = p.name.toLowerCase();
+  const stroke = "#29364a";
+  const blue = "#3b82f6";
+  let art = "";
+  if (n.includes("case")) {
+    art = `<rect x="112" y="24" width="96" height="172" rx="20" fill="#f8fafc" stroke="${stroke}" stroke-width="4"/><rect x="120" y="32" width="80" height="156" rx="14" fill="#eaf2ff" stroke="#bfdbfe" stroke-width="2"/><rect x="130" y="42" width="34" height="34" rx="9" fill="#dbeafe" stroke="${stroke}" stroke-width="3"/><circle cx="141" cy="53" r="5" fill="${blue}"/><circle cx="154" cy="65" r="5" fill="${blue}"/><circle cx="141" cy="66" r="4" fill="${blue}"/>`;
+    if (n.includes("clear")) art = art.replace('fill="#eaf2ff"', 'fill="#ffffff" fill-opacity=".36"').replace('stroke="#bfdbfe"', 'stroke="#93c5fd"');
+    if (n.includes("magsafe")) art += `<circle cx="160" cy="124" r="24" fill="none" stroke="${blue}" stroke-width="5"/><path d="M160 100v48" stroke="${blue}" stroke-width="4" stroke-linecap="round"/>`;
+  } else if (n.includes("tempered glass") || n.includes("screen protector") || n.includes("lens protector")) {
+    art = n.includes("lens protector") ? `<circle cx="160" cy="110" r="58" fill="#f8fafc" stroke="${stroke}" stroke-width="4"/><circle cx="160" cy="110" r="42" fill="#e0f2fe" stroke="${blue}" stroke-width="4"/><circle cx="160" cy="110" r="25" fill="#334155"/><circle cx="151" cy="101" r="8" fill="#93c5fd"/>` : `<rect x="112" y="24" width="96" height="172" rx="18" fill="#f8fafc" stroke="${stroke}" stroke-width="4"/><rect x="120" y="32" width="80" height="156" rx="12" fill="#dff4ff" fill-opacity=".7" stroke="${blue}" stroke-width="2"/><path d="M130 55l58 90M144 42l49 76" stroke="#ffffff" stroke-width="5" stroke-linecap="round"/>`;
+  } else if (n.includes("cable")) {
+    art = `<path d="M105 75v55a55 55 0 0 0 110 0V90" fill="none" stroke="#e2e8f0" stroke-width="16" stroke-linecap="round"/><path d="M105 75v55a55 55 0 0 0 110 0V90" fill="none" stroke="${stroke}" stroke-width="3" stroke-linecap="round"/><rect x="91" y="46" width="28" height="34" rx="5" fill="#f8fafc" stroke="${stroke}" stroke-width="3"/><rect x="201" y="66" width="28" height="35" rx="5" fill="#f8fafc" stroke="${stroke}" stroke-width="3"/>`;
+  } else if (n.includes("charger") || n.includes("adapter")) {
+    art = `<rect x="119" y="55" width="82" height="108" rx="16" fill="#f8fafc" stroke="${stroke}" stroke-width="4"/><rect x="140" y="42" width="8" height="22" rx="2" fill="#94a3b8"/><rect x="170" y="42" width="8" height="22" rx="2" fill="#94a3b8"/><rect x="145" y="132" width="30" height="8" rx="4" fill="${blue}"/>`;
+  } else if (n.includes("power bank")) {
+    art = `<rect x="105" y="55" width="110" height="116" rx="18" fill="#f8fafc" stroke="${stroke}" stroke-width="4"/><rect x="143" y="43" width="34" height="8" rx="4" fill="#94a3b8"/><path d="M165 78l-24 40h20l-8 27 28-44h-20z" fill="${blue}"/>`;
+  } else if (n.includes("earbud") || n.includes("earphone")) {
+    art = `<rect x="108" y="100" width="104" height="70" rx="22" fill="#f8fafc" stroke="${stroke}" stroke-width="4"/><path d="M129 91v-25a19 19 0 0 1 38 0v18h-13V66a6 6 0 0 0-12 0v25zM174 91V66a19 19 0 0 1 38 0v25h-13V66a6 6 0 0 0-12 0v25z" fill="#ffffff" stroke="${stroke}" stroke-width="3" stroke-linejoin="round"/><path d="M139 145h42" stroke="${blue}" stroke-width="5" stroke-linecap="round"/>`;
+  } else if (n.includes("stand") || n.includes("mount") || n.includes("holder")) {
+    art = `<rect x="135" y="25" width="50" height="100" rx="10" fill="#f8fafc" stroke="${stroke}" stroke-width="4"/><rect x="142" y="33" width="36" height="83" rx="5" fill="#dbeafe"/><path d="M160 125v35l-28 15M160 160l28 15" fill="none" stroke="${stroke}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><rect x="111" y="174" width="98" height="12" rx="6" fill="#94a3b8"/><circle cx="160" cy="73" r="12" fill="${blue}"/>`;
+  } else if (n.includes("otg") || n.includes("reader")) {
+    art = `<rect x="112" y="80" width="96" height="60" rx="14" fill="#f8fafc" stroke="${stroke}" stroke-width="4"/><rect x="92" y="96" width="23" height="28" rx="4" fill="#94a3b8" stroke="${stroke}" stroke-width="3"/><rect x="205" y="96" width="26" height="28" rx="4" fill="#dbeafe" stroke="${stroke}" stroke-width="3"/><rect x="139" y="96" width="42" height="28" rx="5" fill="${blue}"/>`;
+  } else if (n.includes("cleaning")) {
+    art = `<rect x="111" y="79" width="34" height="86" rx="10" fill="#bfdbfe" stroke="${stroke}" stroke-width="3"/><rect x="116" y="60" width="24" height="23" rx="4" fill="#f8fafc" stroke="${stroke}" stroke-width="3"/><rect x="160" y="90" width="62" height="60" rx="12" fill="#f8fafc" stroke="${stroke}" stroke-width="3"/><path d="M171 105h40M171 118h32" stroke="${blue}" stroke-width="4" stroke-linecap="round"/>`;
+  } else {
+    art = `<rect x="112" y="24" width="96" height="172" rx="20" fill="#f8fafc" stroke="${stroke}" stroke-width="4"/><rect x="120" y="32" width="80" height="156" rx="14" fill="#dbeafe"/><circle cx="160" cy="110" r="24" fill="${blue}"/><path d="M149 110l8 8 15-17" fill="none" stroke="#ffffff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>`;
+  }
+  return `<svg viewBox="0 0 320 220" role="img" aria-label="${p.name}" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="220" fill="#ffffff"/><ellipse cx="160" cy="194" rx="66" ry="8" fill="#0f172a" opacity=".08"/>${art}</svg>`;
+}
 function productDescription(p) {
   const n = p.name.toLowerCase();
   if (n.includes("clear case")) return "A clear everyday case to show off your phone while helping protect it from scratches and scuffs.";
@@ -88,7 +108,7 @@ function renderVmProducts() {
   const filtered = vmProducts.filter(p => (category === 'all' || p.category === category) && (p.name + ' ' + p.brand).toLowerCase().includes(query));
   grid.innerHTML = filtered.map(p => {
     const idx = vmProducts.indexOf(p);
-    return `<article class="product-card"><div class="product-art"><img src="${productImages[p.category] || productImages.connectivity}" alt="${p.name}" loading="lazy"></div><div class="product-info"><p class="product-type">${p.brand}</p><h3>${p.name}</h3><p>${productDescription(p)}</p><div class="product-price">Message for current price</div><span class="availability-label">Availability confirmed on request</span><div class="product-buy"><label for="qty-${idx}">Qty</label><input id="qty-${idx}" class="qty-input" type="number" min="1" max="20" value="1" aria-label="Quantity for ${p.name}"><button class="button add-to-cart" type="button" data-index="${idx}">Add to order</button></div></div></article>`;
+    return `<article class="product-card"><div class="product-art">${productIllustration(p)}</div><div class="product-info"><p class="product-type">${p.brand}</p><h3>${p.name}</h3><p>${productDescription(p)}</p><div class="product-price">Message for current price</div><span class="availability-label">Availability confirmed on request</span><div class="product-buy"><label for="qty-${idx}">Qty</label><input id="qty-${idx}" class="qty-input" type="number" min="1" max="20" value="1" aria-label="Quantity for ${p.name}"><button class="button add-to-cart" type="button" data-index="${idx}">Add to order</button></div></div></article>`;
   }).join('');
   countLabel.textContent = `${filtered.length} items shown`;
   grid.querySelectorAll('.add-to-cart').forEach(button => button.addEventListener('click', () => {
