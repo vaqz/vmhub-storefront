@@ -46,6 +46,39 @@ const searchInput = document.getElementById('product-search');
 const categoryInput = document.getElementById('product-filter');
 const countLabel = document.getElementById('product-count');
 const orderItems = new Map();
+const productImages = {
+  cases: "https://images.unsplash.com/photo-1764053430686-5435fe548fca?auto=format&fit=crop&w=800&q=80",
+  protection: "https://images.unsplash.com/photo-1752832902114-825ca9c530d7?auto=format&fit=crop&w=800&q=80",
+  charging: "https://images.unsplash.com/photo-1752832902114-825ca9c530d7?auto=format&fit=crop&w=800&q=80",
+  power: "https://images.unsplash.com/photo-1752832902114-825ca9c530d7?auto=format&fit=crop&w=800&q=80",
+  audio: "https://images.unsplash.com/photo-1606220945770-b5b6c2c55bf1?auto=format&fit=crop&w=800&q=80",
+  mounts: "https://images.unsplash.com/photo-1512499617640-c74ae3a79d37?auto=format&fit=crop&w=800&q=80",
+  connectivity: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=800&q=80",
+  care: "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=800&q=80"
+};
+function productDescription(p) {
+  const n = p.name.toLowerCase();
+  if (n.includes("clear case")) return "A clear everyday case to show off your phone while helping protect it from scratches and scuffs.";
+  if (n.includes("silicone case")) return "A soft-touch case designed for a comfortable grip and everyday protection.";
+  if (n.includes("shockproof")) return "A protective case option with reinforced edges for everyday bumps and knocks.";
+  if (n.includes("magsafe")) return "A magnetic-accessory-compatible case option for supported phone models.";
+  if (n.includes("case")) return "A phone case option for supported models, with style and everyday protection in mind.";
+  if (n.includes("tempered glass")) return "A glass screen protector option designed to help guard the display against scratches.";
+  if (n.includes("privacy screen")) return "A privacy-style screen protector option that helps limit side viewing.";
+  if (n.includes("lens protector")) return "A camera lens protector option to help reduce scratches during everyday use.";
+  if (n.includes("airpods protective")) return "A compact protective cover option for supported wireless-earbud cases.";
+  if (n.includes("cable")) return "A charging and data cable option. Connector type and supported charging speed vary by model.";
+  if (n.includes("adapter") || n.includes("charger")) return "A wall-charging accessory option. Check connector, output and device compatibility before purchase.";
+  if (n.includes("power bank")) return "Portable backup power for charging on the go. Capacity, ports and charging speed depend on the selected model.";
+  if (n.includes("earphone") || n.includes("earbud")) return "An audio accessory option for listening on the go. Connector and device compatibility vary by model.";
+  if (n.includes("car phone mount")) return "A hands-free phone mounting option for convenient viewing in the car.";
+  if (n.includes("desk phone stand")) return "A stand for keeping your phone upright on a desk or counter.";
+  if (n.includes("grip") || n.includes("ring holder")) return "A compact phone grip accessory designed to make holding your device more comfortable.";
+  if (n.includes("otg")) return "An OTG adapter option for connecting compatible USB accessories to your device.";
+  if (n.includes("card reader")) return "A card-reader accessory for supported memory cards and device connectors.";
+  if (n.includes("cleaning kit")) return "A cleaning kit option for routine care of your phone and accessories.";
+  return "A practical mobile accessory for everyday use. Ask us about compatible options.";
+}
 function peso(amount) {
   return new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP', maximumFractionDigits: 0 }).format(amount);
 }
@@ -55,7 +88,7 @@ function renderVmProducts() {
   const filtered = vmProducts.filter(p => (category === 'all' || p.category === category) && (p.name + ' ' + p.brand).toLowerCase().includes(query));
   grid.innerHTML = filtered.map(p => {
     const idx = vmProducts.indexOf(p);
-    return `<article class="product-card"><div class="product-art" aria-hidden="true"><svg viewBox="0 0 80 80" fill="none"><rect x="23" y="7" width="34" height="66" rx="8" stroke="currentColor" stroke-width="3"/><rect x="29" y="14" width="12" height="12" rx="3" stroke="currentColor" stroke-width="2"/><path d="M36 64h8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div><div class="product-info"><p class="product-type">${p.brand}</p><h3>${p.name}</h3><p>Ask us to confirm the exact model, current availability and price before ordering.</p><div class="product-price">Message for current price</div><span class="availability-label">Availability confirmed on request</span><div class="product-buy"><label for="qty-${idx}">Qty</label><input id="qty-${idx}" class="qty-input" type="number" min="1" max="20" value="1" aria-label="Quantity for ${p.name}"><button class="button add-to-cart" type="button" data-index="${idx}">Add to order</button></div></div></article>`;
+    return `<article class="product-card"><div class="product-art"><img src="${productImages[p.category] || productImages.connectivity}" alt="${p.name}" loading="lazy"></div><div class="product-info"><p class="product-type">${p.brand}</p><h3>${p.name}</h3><p>${productDescription(p)}</p><div class="product-price">Message for current price</div><span class="availability-label">Availability confirmed on request</span><div class="product-buy"><label for="qty-${idx}">Qty</label><input id="qty-${idx}" class="qty-input" type="number" min="1" max="20" value="1" aria-label="Quantity for ${p.name}"><button class="button add-to-cart" type="button" data-index="${idx}">Add to order</button></div></div></article>`;
   }).join('');
   countLabel.textContent = `${filtered.length} items shown`;
   grid.querySelectorAll('.add-to-cart').forEach(button => button.addEventListener('click', () => {
