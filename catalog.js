@@ -99,6 +99,29 @@ function productDescription(p) {
   if (n.includes("cleaning kit")) return "For routine cleaning of your phone and accessories. Kit contents may vary by supplier.";
   return "A practical mobile accessory for everyday use. Ask us about compatible options.";
 }
+function marketPriceRange(p) {
+  const n = p.name.toLowerCase();
+  if (n.includes("power bank")) return "₱350–₱1,200";
+  if (n.includes("power adapter")) return "₱150–₱1,500";
+  if (n.includes("charger")) return "₱80–₱500";
+  if (n.includes("cable")) return "₱30–₱200";
+  if (n.includes("wireless earbuds")) return "₱180–₱800";
+  if (n.includes("wired earphones")) return "₱80–₱250";
+  if (n.includes("airpods protective")) return "₱50–₱300";
+  if (n.includes("privacy screen")) return "₱50–₱200";
+  if (n.includes("tempered glass")) return "₱20–₱150";
+  if (n.includes("lens protector")) return "₱30–₱150";
+  if (n.includes("magsafe")) return "₱150–₱500";
+  if (n.includes("shockproof")) return "₱70–₱300";
+  if (n.includes("silicone case") || n.includes("clear case") || n.includes("case")) return "₱40–₱250";
+  if (n.includes("car phone mount")) return "₱80–₱350";
+  if (n.includes("desk phone stand")) return "₱30–₱200";
+  if (n.includes("grip") || n.includes("ring holder")) return "₱30–₱180";
+  if (n.includes("otg")) return "₱30–₱150";
+  if (n.includes("card reader")) return "₱50–₱250";
+  if (n.includes("cleaning kit")) return "₱50–₱200";
+  return "₱30–₱300";
+}
 function peso(amount) {
   return new Intl.NumberFormat('en-PH', { style: 'currency', currency: 'PHP', maximumFractionDigits: 0 }).format(amount);
 }
@@ -108,7 +131,7 @@ function renderVmProducts() {
   const filtered = vmProducts.filter(p => (category === 'all' || p.category === category) && (p.name + ' ' + p.brand).toLowerCase().includes(query));
   grid.innerHTML = filtered.map(p => {
     const idx = vmProducts.indexOf(p);
-    return `<article class="product-card"><div class="product-art">${productIllustration(p)}</div><div class="product-info"><p class="product-type">${p.brand}</p><h3>${p.name}</h3><p>${productDescription(p)}</p><div class="product-price">Message for current price</div><span class="availability-label">Availability confirmed on request</span><div class="product-buy"><label for="qty-${idx}">Qty</label><input id="qty-${idx}" class="qty-input" type="number" min="1" max="20" value="1" aria-label="Quantity for ${p.name}"><button class="button add-to-cart" type="button" data-index="${idx}">Add to order</button></div></div></article>`;
+    return `<article class="product-card"><div class="product-art">${productIllustration(p)}</div><div class="product-info"><p class="product-type">${p.brand}</p><h3>${p.name}</h3><p>${productDescription(p)}</p><div class="product-price">Typical PH online price range: ${marketPriceRange(p)}</div><p class="price-note">Indicative market reference only; VM Hub price and stock are confirmed by message.</p><span class="availability-label">Availability confirmed on request</span><div class="product-buy"><label for="qty-${idx}">Qty</label><input id="qty-${idx}" class="qty-input" type="number" min="1" max="20" value="1" aria-label="Quantity for ${p.name}"><button class="button add-to-cart" type="button" data-index="${idx}">Add to order</button></div></div></article>`;
   }).join('');
   countLabel.textContent = `${filtered.length} items shown`;
   grid.querySelectorAll('.add-to-cart').forEach(button => button.addEventListener('click', () => {
