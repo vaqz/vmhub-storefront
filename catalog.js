@@ -70,14 +70,12 @@ function renderCart() {
   const container = document.getElementById('cart-items');
   const totalLabel = document.getElementById('cart-total');
   const count = document.getElementById('cart-count');
-  let total = 0;
   let qty = 0;
   container.innerHTML = [...orderItems.entries()].map(([index, quantity]) => {
     const p = vmProducts[index];
-    total += p.price * quantity;
     qty += quantity;
     return `<div class="cart-row"><span>${p.name} × ${quantity}</span><strong>Price to confirm</strong><button type="button" class="remove-item" data-index="${index}">Remove</button></div>`;
-  }).join('') || '<p class="section-subtitle">Your order list is empty. Add products above to request availability.</p>';
+  }).join('') || '<p class="section-subtitle">Your list is empty. Add items above to request a price and availability.</p>';
   totalLabel.textContent = orderItems.size ? "Confirming price with VM Hub" : "—";
   count.textContent = String(qty);
   container.querySelectorAll('.remove-item').forEach(button => button.addEventListener('click', () => {
@@ -93,7 +91,6 @@ document.getElementById('order-form').addEventListener('submit', event => {
     const p = vmProducts[index];
     return `- ${p.name} | Qty: ${quantity} | Price: please confirm`;
   });
-  const total = [...orderItems.entries()].reduce((sum, [index, quantity]) => sum + vmProducts[index].price * quantity, 0);
   const message = [
     'VM HUB — PRODUCT AVAILABILITY / ORDER REQUEST',
     'Thanks for contacting VM Hub. This is an inquiry, not a confirmed order.',
