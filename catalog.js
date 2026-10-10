@@ -79,24 +79,24 @@ function productIllustration(p) {
 function productDescription(p) {
   const n = p.name.toLowerCase();
   if (n.includes("clear case")) return "A clear everyday case to show off your phone while helping protect it from scratches and scuffs.";
-  if (n.includes("silicone case")) return "A soft-touch case designed for a comfortable grip and everyday protection.";
-  if (n.includes("shockproof")) return "A protective case option with reinforced edges for everyday bumps and knocks.";
-  if (n.includes("magsafe")) return "A magnetic-accessory-compatible case option for supported phone models.";
-  if (n.includes("case")) return "A phone case option for supported models, with style and everyday protection in mind.";
-  if (n.includes("tempered glass")) return "A glass screen protector option designed to help guard the display against scratches.";
-  if (n.includes("privacy screen")) return "A privacy-style screen protector option that helps limit side viewing.";
-  if (n.includes("lens protector")) return "A camera lens protector option to help reduce scratches during everyday use.";
-  if (n.includes("airpods protective")) return "A compact protective cover option for supported wireless-earbud cases.";
-  if (n.includes("cable")) return "A charging and data cable option. Connector type and supported charging speed vary by model.";
-  if (n.includes("adapter") || n.includes("charger")) return "A wall-charging accessory option. Check connector, output and device compatibility before purchase.";
-  if (n.includes("power bank")) return "Portable backup power for charging on the go. Capacity, ports and charging speed depend on the selected model.";
-  if (n.includes("earphone") || n.includes("earbud")) return "An audio accessory option for listening on the go. Connector and device compatibility vary by model.";
-  if (n.includes("car phone mount")) return "A hands-free phone mounting option for convenient viewing in the car.";
-  if (n.includes("desk phone stand")) return "A stand for keeping your phone upright on a desk or counter.";
-  if (n.includes("grip") || n.includes("ring holder")) return "A compact phone grip accessory designed to make holding your device more comfortable.";
-  if (n.includes("otg")) return "An OTG adapter option for connecting compatible USB accessories to your device.";
-  if (n.includes("card reader")) return "A card-reader accessory for supported memory cards and device connectors.";
-  if (n.includes("cleaning kit")) return "A cleaning kit option for routine care of your phone and accessories.";
+  if (n.includes("silicone case")) return "A soft-touch case with a comfortable feel for everyday use. Available fit depends on your phone model.";
+  if (n.includes("shockproof")) return "A case designed with extra edge protection for everyday bumps. Ask us to check fit for your phone.";
+  if (n.includes("magsafe")) return "A case designed for compatible magnetic accessories. Confirm your iPhone model before ordering.";
+  if (n.includes("case")) return "An everyday protective case for selected phone models. Share your exact phone model so we can check compatibility.";
+  if (n.includes("tempered glass")) return "Helps protect your screen from everyday scratches. Compatibility depends on your exact phone model.";
+  if (n.includes("privacy screen")) return "A screen protector designed to make side viewing less visible. Please confirm your exact phone model.";
+  if (n.includes("lens protector")) return "Helps shield your camera lenses from everyday scratches. Fit depends on your phone model.";
+  if (n.includes("airpods protective")) return "Protective cover for your AirPods charging case. Please tell us your AirPods generation so we can check the fit."
+  if (n.includes("cable")) return "Charge your device or connect it for data transfer. Available connector types and charging speeds depend on the model.";
+  if (n.includes("adapter") || n.includes("charger")) return "A wall charger for everyday charging. Tell us your phone model so we can help check the right connector and power output.";
+  if (n.includes("power bank")) return "Keep your phone powered while you’re out. Ask us about available capacities, ports and charging speeds.";
+  if (n.includes("earphone") || n.includes("earbud")) return "For music, calls and everyday listening. Let us know whether you need a wired or wireless option.";
+  if (n.includes("car phone mount")) return "Keep your phone in view while driving. Mounting style and phone fit depend on the selected model.";
+  if (n.includes("desk phone stand")) return "A handy stand for viewing your phone on a desk, counter or bedside table.";
+  if (n.includes("grip") || n.includes("ring holder")) return "Adds a more secure grip when holding your phone. Style and attachment type vary by item.";
+  if (n.includes("otg")) return "Connect compatible USB accessories to your phone or tablet. Connector type depends on your device.";
+  if (n.includes("card reader")) return "Transfer files from supported memory cards. Check the card format and connector your device needs.";
+  if (n.includes("cleaning kit")) return "For routine cleaning of your phone and accessories. Kit contents may vary by supplier.";
   return "A practical mobile accessory for everyday use. Ask us about compatible options.";
 }
 function peso(amount) {
@@ -168,6 +168,14 @@ document.getElementById('order-form').addEventListener('submit', event => {
     'Please confirm current stock or sourcing availability, exact compatibility, final price, delivery fee if any, and estimated fulfillment time.'
   ].join('\n');
   window.open('https://wa.me/639481467951?text=' + encodeURIComponent(message), '_blank', 'noopener');
+});
+document.querySelectorAll('.category-link[data-category]').forEach(link => {
+  link.addEventListener('click', () => {
+    categoryInput.value = link.dataset.category;
+    searchInput.value = '';
+    renderVmProducts();
+    document.querySelectorAll('.category-link[data-category]').forEach(item => item.setAttribute('aria-pressed', String(item === link)));
+  });
 });
 searchInput.addEventListener('input', renderVmProducts);
 categoryInput.addEventListener('change', renderVmProducts);
