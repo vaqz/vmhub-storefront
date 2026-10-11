@@ -20,9 +20,9 @@
   <style>
     .shop-hero{padding:46px 0 32px}.shop-hero h1{max-width:760px;margin:0;font-size:clamp(2.3rem,7vw,4.2rem);line-height:1;letter-spacing:-.05em}.shop-hero p:not(.eyebrow){max-width:660px;color:var(--vm-muted)}
     .shop-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}.button-outline{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border:1px solid var(--vm-border);border-radius:12px;background:var(--vm-surface);text-decoration:none;font-weight:750}
-    .shop-notice{margin:20px 0;padding:14px 16px;border:1px solid #795d28;border-radius:12px;background:rgba(234,179,8,.08);color:#f4d68c;font-size:.88rem}
+    .shop-notice{display:flex;gap:10px;align-items:flex-start;margin:20px 0;padding:13px 16px;border:1px solid rgba(96,165,250,.28);border-radius:12px;background:rgba(59,130,246,.07);color:var(--vm-text);font-size:.86rem}.shop-notice svg{width:21px;height:21px;flex:0 0 21px;color:#8dc0ff}.shop-notice strong{color:#a9d0ff}
     .trust-strip{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin:22px 0 32px}
-    .trust-strip div{display:flex;flex-direction:column;gap:4px;padding:14px;border:1px solid var(--vm-border);border-radius:12px;background:var(--vm-surface)}
+    .trust-strip div{display:flex;flex-direction:column;align-items:flex-start;gap:7px;padding:15px;border:1px solid var(--vm-border);border-radius:14px;background:linear-gradient(145deg,rgba(59,130,246,.07),var(--vm-surface) 72%)}.trust-icon{display:grid;place-items:center;width:34px;height:34px;border-radius:10px;background:rgba(96,165,250,.12);color:#8dc0ff}.trust-icon svg{width:19px;height:19px}
     .trust-strip strong{font-size:.9rem}.trust-strip span{font-size:.76rem;color:var(--vm-muted)}
     .skip-link{position:absolute;left:-9999px;top:auto}.skip-link:focus{left:12px;top:12px;z-index:1000;padding:10px 14px;background:#fff;color:#111;border-radius:8px}
     @media(max-width:700px){.trust-strip{grid-template-columns:repeat(2,minmax(0,1fr))}}
@@ -53,12 +53,12 @@
       </div>
     </section>
 
-    <aside class="shop-notice" aria-label="Ordering information"><strong>Before you order:</strong> Message us to confirm the exact model, current stock, price and delivery options. Your request is not confirmed until we reply. Payment is arranged only after the details are agreed.</aside>
-    <section class="trust-strip" aria-label="Why shop with VM Hub">
-      <div><strong>10+ years</strong><span>Serving customers</span></div>
-      <div><strong>Butuan City</strong><span>Local store and pickup</span></div>
-      <div><strong>Nationwide</strong><span>Courier options available</span></div>
-      <div><strong>Model check</strong><span>Ask us to confirm compatibility</span></div>
+    <aside class="shop-notice" aria-label="Ordering information"><svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 10.5v5M12 7.5h.01" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg><span><strong>Before an order is confirmed:</strong> We’ll verify the exact model, availability, final price and delivery options with you first.</span></aside>
+    <section class="trust-strip" aria-label="Why shop with VM i-Hub">
+      <div><span class="trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l2.5 5.2 5.7.8-4.1 4 .97 5.7L12 16l-5.1 2.7.97-5.7-4.1-4 5.7-.8L12 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg></span><strong>10+ years</strong><span>Serving customers</span></div>
+      <div><span class="trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M20 10c0 5-8 11-8 11S4 15 4 10a8 8 0 1 1 16 0z" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="10" r="2.5" stroke="currentColor" stroke-width="1.7"/></svg></span><strong>Butuan City</strong><span>Local store and pickup</span></div>
+      <div><span class="trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><circle cx="7" cy="18" r="2" stroke="currentColor" stroke-width="1.7"/><circle cx="18" cy="18" r="2" stroke="currentColor" stroke-width="1.7"/></svg></span><strong>Nationwide</strong><span>Courier options available</span></div>
+      <div><span class="trust-icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none"><rect x="7" y="2.5" width="10" height="19" rx="2" stroke="currentColor" stroke-width="1.7"/><path d="M10 5.5h4M11 18.5h2M4 9l2 2 3-3" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></span><strong>Model check</strong><span>Ask us to confirm compatibility</span></div>
     </section>
 
     <section aria-labelledby="categories-title">
