@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="VM i-Hub">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="13" fill="#0b1220"/>
-  <path d="M8 17h7l6 23 6-23h7l6 23 6-23h7L43 49h-7l-6-22-6 22h-7z" fill="#ffffff"/>
-  <circle cx="53" cy="48" r="5" fill="#69a7ff"/>
+  <text x="5" y="43" font-family="Arial, Helvetica, sans-serif" font-size="32" font-weight="800" fill="#ffffff">V</text>
+  <text x="27" y="43" font-family="Arial, Helvetica, sans-serif" font-size="30" font-weight="800" fill="#69a7ff">M</text>
 </svg>
