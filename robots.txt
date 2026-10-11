@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vmhub.top/sitemap.xml
