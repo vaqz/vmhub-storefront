@@ -40,6 +40,19 @@ const vmProducts = [
   { brand: "Universal", name: "OTG Adapter — connector required", category: "connectivity", status: "quote" },
   { brand: "Universal", name: "Memory Card Reader — connector required", category: "connectivity", status: "quote" },
   { brand: "Universal", name: "Phone Cleaning Kit", category: "care", status: "quote" },
+
+  // Replacement parts: exact device model and part version must be confirmed before quoting.
+  { brand: "Phone Parts", name: "LCD / Display Assembly — exact model required", category: "parts", status: "quote" },
+  { brand: "Phone Parts", name: "Replacement Battery — exact model required", category: "parts", status: "quote" },
+  { brand: "Phone Parts", name: "Rear Camera Module — exact model required", category: "parts", status: "quote" },
+  { brand: "Phone Parts", name: "Front Camera Module — exact model required", category: "parts", status: "quote" },
+  { brand: "Phone Parts", name: "Charging Port / Charging Flex — exact model required", category: "parts", status: "quote" },
+  { brand: "Phone Parts", name: "Loudspeaker / Earpiece — exact model required", category: "parts", status: "quote" },
+  { brand: "Phone Parts", name: "Microphone / Flex Cable — exact model required", category: "parts", status: "quote" },
+  { brand: "Phone Parts", name: "Power / Volume Button Flex — exact model required", category: "parts", status: "quote" },
+  { brand: "Phone Parts", name: "Back Cover / Rear Glass — exact model required", category: "parts", status: "quote" },
+  { brand: "Phone Parts", name: "SIM Tray — exact model required", category: "parts", status: "quote" },
+  { brand: "Phone Parts", name: "Vibration Motor — exact model required", category: "parts", status: "quote" },
 ];
 const grid = document.getElementById('product-grid');
 const searchInput = document.getElementById('product-search');
@@ -69,6 +82,13 @@ function productIllustration(p) {
     art = `<rect x="135" y="25" width="50" height="100" rx="10" fill="#f8fafc" stroke="${stroke}" stroke-width="4"/><rect x="142" y="33" width="36" height="83" rx="5" fill="#dbeafe"/><path d="M160 125v35l-28 15M160 160l28 15" fill="none" stroke="${stroke}" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><rect x="111" y="174" width="98" height="12" rx="6" fill="#94a3b8"/><circle cx="160" cy="73" r="12" fill="${blue}"/>`;
   } else if (n.includes("otg") || n.includes("reader")) {
     art = `<rect x="112" y="80" width="96" height="60" rx="14" fill="#f8fafc" stroke="${stroke}" stroke-width="4"/><rect x="92" y="96" width="23" height="28" rx="4" fill="#94a3b8" stroke="${stroke}" stroke-width="3"/><rect x="205" y="96" width="26" height="28" rx="4" fill="#dbeafe" stroke="${stroke}" stroke-width="3"/><rect x="139" y="96" width="42" height="28" rx="5" fill="${blue}"/>`;
+  } else if (p.category === "parts") {
+    if (n.includes("lcd") || n.includes("display")) art = `<rect x="112" y="24" width="96" height="172" rx="14" fill="#f8fafc" stroke="${stroke}" stroke-width="4"/><rect x="121" y="34" width="78" height="151" rx="8" fill="#dbeafe" stroke="${blue}" stroke-width="3"/><path d="M128 54l62 85M144 40l48 67" stroke="#fff" stroke-width="5" stroke-linecap="round"/>`;
+    else if (n.includes("battery")) art = `<rect x="116" y="48" width="88" height="132" rx="12" fill="#f8fafc" stroke="${stroke}" stroke-width="4"/><rect x="143" y="38" width="34" height="10" rx="3" fill="#94a3b8"/><rect x="126" y="67" width="68" height="92" rx="7" fill="#dbeafe"/><path d="M166 78l-22 36h18l-7 28 26-42h-18z" fill="${blue}"/>`;
+    else if (n.includes("camera")) art = `<rect x="104" y="60" width="112" height="100" rx="14" fill="#e2e8f0" stroke="${stroke}" stroke-width="4"/><circle cx="160" cy="110" r="35" fill="#334155" stroke="${blue}" stroke-width="5"/><circle cx="160" cy="110" r="19" fill="#93c5fd"/><circle cx="153" cy="103" r="7" fill="#fff"/>`;
+    else if (n.includes("charging port") || n.includes("microphone") || n.includes("button flex")) art = `<path d="M120 45v130h80V45" fill="#e2e8f0" stroke="${stroke}" stroke-width="4"/><rect x="140" y="37" width="40" height="22" rx="4" fill="#94a3b8" stroke="${stroke}" stroke-width="3"/><rect x="145" y="145" width="30" height="16" rx="3" fill="${blue}"/><circle cx="132" cy="82" r="4" fill="${blue}"/><circle cx="188" cy="82" r="4" fill="${blue}"/>`;
+    else if (n.includes("speaker") || n.includes("earpiece")) art = `<rect x="106" y="73" width="108" height="76" rx="14" fill="#e2e8f0" stroke="${stroke}" stroke-width="4"/><rect x="125" y="92" width="70" height="38" rx="7" fill="#334155"/><g fill="#93c5fd"><circle cx="137" cy="104" r="3"/><circle cx="151" cy="104" r="3"/><circle cx="165" cy="104" r="3"/><circle cx="179" cy="104" r="3"/><circle cx="137" cy="117" r="3"/><circle cx="151" cy="117" r="3"/><circle cx="165" cy="117" r="3"/><circle cx="179" cy="117" r="3"/></g>`;
+    else art = `<rect x="111" y="50" width="98" height="120" rx="12" fill="#e2e8f0" stroke="${stroke}" stroke-width="4"/><rect x="125" y="65" width="70" height="90" rx="7" fill="#f8fafc" stroke="${blue}" stroke-width="3"/><circle cx="160" cy="110" r="19" fill="#dbeafe" stroke="${stroke}" stroke-width="3"/>`;
   } else if (n.includes("cleaning")) {
     art = `<rect x="111" y="79" width="34" height="86" rx="10" fill="#bfdbfe" stroke="${stroke}" stroke-width="3"/><rect x="116" y="60" width="24" height="23" rx="4" fill="#f8fafc" stroke="${stroke}" stroke-width="3"/><rect x="160" y="90" width="62" height="60" rx="12" fill="#f8fafc" stroke="${stroke}" stroke-width="3"/><path d="M171 105h40M171 118h32" stroke="${blue}" stroke-width="4" stroke-linecap="round"/>`;
   } else {
@@ -78,6 +98,19 @@ function productIllustration(p) {
 }
 function productDescription(p) {
   const n = p.name.toLowerCase();
+  if (p.category === "parts") {
+    if (n.includes("lcd") || n.includes("display")) return "Replacement display part for a specific phone model. Confirm the exact model, part quality and availability before ordering. Installation is not included unless separately confirmed.";
+    if (n.includes("battery")) return "Replacement battery for selected phone models. Exact model and battery version must be checked; installation is not included unless separately confirmed.";
+    if (n.includes("camera")) return "Replacement camera module for selected phone models. Confirm whether you need the front or rear camera and the exact device model.";
+    if (n.includes("charging port")) return "Replacement charging-port or flex assembly for selected models. Exact device version must be verified before quoting.";
+    if (n.includes("speaker") || n.includes("earpiece")) return "Replacement speaker or earpiece component for selected phone models. Compatibility and part version must be confirmed.";
+    if (n.includes("microphone")) return "Replacement microphone or flex-cable part for selected models. Ask us to check compatibility using your exact phone model.";
+    if (n.includes("button")) return "Replacement power or volume-button flex for selected models. Confirm the exact model and part version before ordering.";
+    if (n.includes("back cover") || n.includes("rear glass")) return "Replacement rear cover or glass for selected phone models. Colour, finish and model compatibility must be confirmed.";
+    if (n.includes("sim tray")) return "Replacement SIM tray for selected models. Colour and exact model compatibility must be confirmed.";
+    if (n.includes("vibration")) return "Replacement vibration motor for selected phone models. Exact model compatibility must be checked.";
+    return "Replacement part for selected phone models. Exact compatibility and availability must be confirmed.";
+  }
   if (n.includes("clear case")) return "A clear everyday case to show off your phone while helping protect it from scratches and scuffs.";
   if (n.includes("silicone case")) return "A soft-touch case with a comfortable feel for everyday use. Available fit depends on your phone model.";
   if (n.includes("shockproof")) return "A case designed with extra edge protection for everyday bumps. Ask us to check fit for your phone.";
@@ -100,6 +133,7 @@ function productDescription(p) {
   return "A practical mobile accessory for everyday use. Ask us about compatible options.";
 }
 function marketPriceRange(p) {
+  if (p.category === "parts") return "Quote required — exact model and part";
   const n = p.name.toLowerCase();
   if (n.includes("power bank")) return "₱350–₱1,200";
   if (n.includes("power adapter")) return "₱150–₱1,500";
@@ -131,7 +165,7 @@ function renderVmProducts() {
   const filtered = vmProducts.filter(p => (category === 'all' || p.category === category) && (p.name + ' ' + p.brand).toLowerCase().includes(query));
   grid.innerHTML = filtered.map(p => {
     const idx = vmProducts.indexOf(p);
-    return `<article class="product-card"><div class="product-art">${productIllustration(p)}</div><div class="product-info"><p class="product-type">${p.brand}</p><h3>${p.name}</h3><p>${productDescription(p)}</p><div class="product-price">Typical PH online price range: ${marketPriceRange(p)}</div><p class="price-note">Indicative market reference only; VM Hub price and stock are confirmed by message.</p><span class="availability-label">Availability confirmed on request</span><div class="product-buy"><label for="qty-${idx}">Qty</label><input id="qty-${idx}" class="qty-input" type="number" min="1" max="20" value="1" aria-label="Quantity for ${p.name}"><button class="button add-to-cart" type="button" data-index="${idx}">Add to order</button></div></div></article>`;
+    return `<article class="product-card"><div class="product-art">${productIllustration(p)}</div><div class="product-info"><p class="product-type">${p.brand}</p><h3>${p.name}</h3><p>${productDescription(p)}</p><div class="product-price">${p.category === "parts" ? "Price: " : "Typical PH online price range: "}${marketPriceRange(p)}</div><p class="price-note">${p.category === "parts" ? "Replacement part only unless installation is expressly confirmed. Ask us to verify compatibility, part quality and stock." : "Indicative market reference only; VM Hub price and stock are confirmed by message."}</p><span class="availability-label">Availability confirmed on request</span><div class="product-buy"><label for="qty-${idx}">Qty</label><input id="qty-${idx}" class="qty-input" type="number" min="1" max="20" value="1" aria-label="Quantity for ${p.name}"><button class="button add-to-cart" type="button" data-index="${idx}">Add to order</button></div></div></article>`;
   }).join('');
   countLabel.textContent = `${filtered.length} items shown`;
   grid.querySelectorAll('.add-to-cart').forEach(button => button.addEventListener('click', () => {
