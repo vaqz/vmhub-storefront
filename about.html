@@ -22,9 +22,15 @@
     .about-hero h1{font-size:clamp(2.2rem,6vw,3.5rem);line-height:1.05;letter-spacing:-.04em;margin:8px 0 16px}
     .about-hero p,.about-section p,.about-section li{color:var(--vm-muted);line-height:1.75}
     .about-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;margin:20px 0 34px}
-    .about-card{padding:20px;border:1px solid var(--vm-border);border-radius:16px;background:var(--vm-surface)}
-    .about-card h2{font-size:1.05rem;margin:0 0 8px}
-    .about-card p{margin:0;color:var(--vm-muted);line-height:1.7;font-size:.92rem}
+    .about-card{position:relative;isolation:isolate;overflow:hidden;padding:22px;border:1px solid var(--vm-border);border-radius:16px;background:linear-gradient(135deg,rgba(17,27,45,.98),rgba(15,23,39,.94))}
+    .about-card::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(ellipse at 92% 12%,var(--card-glow,rgba(96,165,250,.18)),transparent 48%)}
+    .about-card-art{position:absolute;right:8px;bottom:-14px;width:142px;height:142px;color:var(--card-accent,#75b3ff);opacity:.12;pointer-events:none;z-index:-1}
+    .about-card h2{font-size:1.05rem;margin:0 0 8px;max-width:85%;position:relative}
+    .about-card p{margin:0;color:var(--vm-muted);line-height:1.7;font-size:.92rem;max-width:94%;position:relative}
+    .about-card:nth-child(2){--card-accent:#7dd3fc;--card-glow:rgba(56,189,248,.17)}
+    .about-card:nth-child(3){--card-accent:#93c5fd;--card-glow:rgba(59,130,246,.16)}
+    .about-card:nth-child(4){--card-accent:#a5b4fc;--card-glow:rgba(129,140,248,.17)}
+    @media(prefers-reduced-motion:no-preference){.about-card{transition:border-color .18s,transform .18s}.about-card:hover{border-color:rgba(125,179,255,.42);transform:translateY(-2px)}}
     .about-section{max-width:820px;padding:20px 0}
     .about-section h2{font-size:1.35rem}
     .about-actions{display:flex;gap:10px;flex-wrap:wrap;margin:24px 0 40px}
@@ -61,18 +67,22 @@
     </section>
     <section class="about-grid" aria-label="About VM i-Hub">
       <article class="about-card">
+        <svg class="about-card-art" viewBox="0 0 120 120" fill="none" aria-hidden="true"><path d="M38 15h43a8 8 0 0 1 8 8v74a8 8 0 0 1-8 8H38a8 8 0 0 1-8-8V23a8 8 0 0 1 8-8Z" stroke="currentColor" stroke-width="4"/><path d="M45 27h29M51 91h17" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><path d="m67 38-17 25h15l-8 20 24-31H65z" fill="currentColor"/></svg>
         <h2>Experience you can ask</h2>
         <p>With more than a decade in business, we understand that customers need clear information. Tell us your phone's exact brand and model so we can help check suitable options.</p>
       </article>
       <article class="about-card">
+        <svg class="about-card-art" viewBox="0 0 120 120" fill="none" aria-hidden="true"><rect x="15" y="30" width="42" height="68" rx="7" stroke="currentColor" stroke-width="4"/><rect x="65" y="15" width="39" height="55" rx="7" stroke="currentColor" stroke-width="4"/><path d="M27 40h18M77 26h15M30 86h12M77 57h15" stroke="currentColor" stroke-width="4" stroke-linecap="round"/><circle cx="85" cy="87" r="17" stroke="currentColor" stroke-width="4"/><path d="m76 87 6 6 12-14" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h2>Accessories and parts</h2>
         <p>Browse cellphone cases, screen protection, charging accessories, audio products, everyday add-ons and selected replacement parts. Specific models, part types and availability must be confirmed with us.</p>
       </article>
       <article class="about-card">
+        <svg class="about-card-art" viewBox="0 0 120 120" fill="none" aria-hidden="true"><path d="M99 50c0 29-39 57-39 57S21 79 21 50a39 39 0 1 1 78 0Z" stroke="currentColor" stroke-width="4"/><circle cx="60" cy="50" r="13" stroke="currentColor" stroke-width="4"/><path d="M8 108h104" stroke="currentColor" stroke-width="4" stroke-linecap="round"/></svg>
         <h2>Based in Butuan City</h2>
         <p>Visit or arrange pickup at R. Calo St., Butuan City, Agusan del Norte, 8600, Philippines. Please message us first to confirm item readiness and pickup arrangements.</p>
       </article>
       <article class="about-card">
+        <svg class="about-card-art" viewBox="0 0 120 120" fill="none" aria-hidden="true"><path d="m15 39 45-23 45 23-45 24-45-24Z" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="M15 39v45l45 23 45-23V39M60 63v44M38 27l45 24" stroke="currentColor" stroke-width="4" stroke-linejoin="round"/><path d="m47 72 9 9 18-20" stroke="currentColor" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/></svg>
         <h2>Order support</h2>
         <p>We can discuss local delivery in Butuan City, nationwide courier options and requests for items that may need supplier sourcing. Final price, stock and delivery details are confirmed before an order is accepted.</p>
       </article>
